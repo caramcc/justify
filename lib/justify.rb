@@ -1,7 +1,7 @@
 require "justify/version"
 
 class String
-  def justify(len = 80)
+  def justify(len = 80, indent_len = 0)
     unless self.length < len
 
       words = self.gsub("\n", " ").scan(/[\w.-]+/)
@@ -11,6 +11,7 @@ class String
         output += w
         actual_len += w.length
         if actual_len >= len
+          output += " " * indent_len
           output += "\n"
           actual_len = 0
         else
